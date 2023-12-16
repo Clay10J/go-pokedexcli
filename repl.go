@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-func startRepl() {
+func startRepl(cfg *config) {
 	reader := bufio.NewReader(os.Stdin)
 	scanner := bufio.NewScanner(reader)
 	for {
@@ -30,14 +30,17 @@ func startRepl() {
 			continue
 		}
 
-		cmd.callback()
+		err := cmd.callback(cfg)
+		if err != nil {
+			fmt.Println(err)
+		}
 	}
 }
 
 type cliCommand struct {
 	name        string
 	description string
-	callback    func() error
+	callback    func(*config) error
 }
 
 func cleanInput(s string) []string {

@@ -6,9 +6,12 @@ import (
 	"io"
 )
 
-func (c *Client) ListLocationAreas() (LocationAreasResponse, error) {
+func (c *Client) ListLocationAreas(pageURL *string) (LocationAreasResponse, error) {
 	endpoint := "/location"
 	fullURL := baseURL + endpoint
+	if pageURL != nil {
+		fullURL = *pageURL
+	}
 
 	// req, err := http.NewRequest("GET", fullURL, nil)
 	// if err != nil {
