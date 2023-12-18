@@ -20,6 +20,10 @@ func startRepl(cfg *config) {
 			continue
 		}
 
+		if len(cleaned) > 1 {
+			cfg.name = &cleaned[1]
+		}
+
 		command := cleaned[0]
 		availableCommands := getCommands()
 
@@ -70,6 +74,12 @@ func getCommands() map[string]cliCommand {
 			name:        "mapb",
 			description: "Display the previous 20 locations",
 			callback:    commandMapb,
+		},
+		// FINISH ME
+		"explore": {
+			name:        "explore <location name>",
+			description: "Display the pokemon in a given location",
+			callback:    commandExplore,
 		},
 	}
 }
