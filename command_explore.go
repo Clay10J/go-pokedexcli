@@ -5,12 +5,13 @@ import (
 	"fmt"
 )
 
-func commandExplore(cfg *config) error {
-	if cfg.name == nil {
+func commandExplore(cfg *config, args ...string) error {
+	if len(args) != 1 {
 		return errors.New("no location name provided. please enter a location along with the explore command")
 	}
+	locationAreaName := args[0]
 
-	resp, err := cfg.pokeapiClient.ListPokemonInLocationArea(cfg.name)
+	resp, err := cfg.pokeapiClient.ListPokemonInLocationArea(locationAreaName)
 	if err != nil {
 		return err
 	}

@@ -61,9 +61,9 @@ func (c *Client) ListLocationAreas(pageURL *string) (LocationAreasResponse, erro
 	return locationAreasResponse, nil
 }
 
-func (c *Client) ListPokemonInLocationArea(name *string) (LocationAreasSpecificResponse, error) {
+func (c *Client) ListPokemonInLocationArea(locationAreaName string) (LocationAreasSpecificResponse, error) {
 	endpoint := "/location-area"
-	fullURL := baseURL + endpoint + fmt.Sprintf("/%s", *name)
+	fullURL := baseURL + endpoint + fmt.Sprintf("/%s", locationAreaName)
 
 	// req, err := http.NewRequest("GET", fullURL, nil)
 	// if err != nil {
