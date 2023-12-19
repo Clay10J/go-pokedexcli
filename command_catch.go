@@ -17,6 +17,8 @@ func commandCatch(cfg *config, args ...string) error {
 		return err
 	}
 
+	pokemonName = resp.Name
+
 	fmt.Printf("Throwing a Pokeball at %s...\n", pokemonName)
 
 	isCaught := attemptCatch(resp.BaseExperience)
